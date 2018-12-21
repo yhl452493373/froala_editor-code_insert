@@ -13,7 +13,7 @@
 使用之前的准备:
 修改ace editor的主文件ace.js(本项目中这个js已经被修改了):
 将
-```java
+```javascript
 if (cjk) {
     screenColumn += 1;
     var span = dom.createElement("span");
@@ -24,7 +24,7 @@ if (cjk) {
 }
 ```
 修改为
-```java
+```javascript
 if (cjk) {
     screenColumn += 1;
     var span = this.dom.createElement("span");
@@ -47,7 +47,7 @@ do not reference ace editor's ext-static_highlight.js file.use src/js/ext-static
 ---
 if you need to input CJK char(like chinese,japanese...),please modify ace.js.
 change
-```java
+```javascript
 if (cjk) {
     screenColumn += 1;
     var span = dom.createElement("span");
@@ -58,7 +58,7 @@ if (cjk) {
 }
 ```
 to
-```java
+```javascript
 if (cjk) {
     screenColumn += 1;
     var span = this.dom.createElement("span");
