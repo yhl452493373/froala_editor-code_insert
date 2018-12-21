@@ -8,6 +8,7 @@
 * src/css/code.css
 * src/js/code.js
 * src/js/ext-static_highlight.js
+不要使用ace editor下面的ext-static_highlight.js,除非你把src/js/ext-static_highlight.js拷贝过去替换了它.否则请用src/js/ext-static_highlight.js这个文件
 ---
 使用之前的准备:
 修改ace editor的主文件ace.js(本项目中这个js已经被修改了):
@@ -23,6 +24,7 @@ if (cjk) {
 }
 ```
 修改为
+```java
 if (cjk) {
     screenColumn += 1;
     var span = this.dom.createElement("span");
@@ -36,3 +38,35 @@ if (cjk) {
 ---
 注意:
 请将src/js下的ext-static_highlight.js放到ace editor目录下替换对应文件再引用该文件.示例中直接引用的src/js下的文件,你也可以这样引用
+---
+main files:
+* src/css/code.css
+* src/js/code.js
+* src/js/ext-static_highlight.js
+do not reference ace editor's ext-static_highlight.js file.use src/js/ext-static_highlight.js instead.
+---
+if you need to input CJK char(like chinese,japanese...),please modify ace.js.
+change
+```java
+if (cjk) {
+    screenColumn += 1;
+    var span = dom.createElement("span");
+    span.style.width = (self.config.characterWidth * 2) + "px";
+    span.className = "ace_cjk";
+    span.textContent = cjk;
+    valueFragment.appendChild(span);
+}
+```
+to
+```java
+if (cjk) {
+    screenColumn += 1;
+    var span = this.dom.createElement("span");
+    span.style.width = (self.config.characterWidth * 2) + "px";
+    span.className = "ace_cjk";
+    span.textContent = cjk;
+    valueFragment.appendChild(span);
+}
+```
+after that, please flow src/codeInsert.html and src /showInsertCode.html
+DO NOT USE IT IF YOU USE textarea FOR Froala Editor.IT ONLY FOR div TAG.
