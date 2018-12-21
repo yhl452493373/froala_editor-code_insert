@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="../lib/froala-editor/css/froala_editor.css">
+        <link rel="stylesheet" href="../lib/froala-editor/css/froala_style.css">
+
+        <!-- css for insert code plugin -->
+        <link rel="stylesheet" href="css/code.css">
+
+        <style>
+            body {
+                text-align: center;
+            }
+
+            div#editor {
+                width: 81%;
+                margin: auto;
+                text-align: left;
+            }
+
+            .ss {
+                background-color: red;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="editor">
+            <div id='edit' style="margin-top: 30px;">
+                <p style="color: green;">code insert plugin can only use in div tag.<b style="color: red;">NOT FOR TEXTAREA</b></p><div ace-mode="html" class="ace_code_highlight_container" contenteditable="false"><pre ace-gutter="true" ace-mode="ace/mode/html" ace-theme="ace/theme/tomorrow" class="ace_code_highlight" id="ace_code_highlight_1284987609">&lt;div id=&quot;&quot;&gt;
+    &lt;datatemplate&gt;
+        this is some html code
+    &lt;/datatemplate&gt;
+&lt;/div&gt;
+&lt;script&gt;
+    alert("this is some javascript code")
+&lt;/script&gt;</pre></div><p><br></p>
+            </div>
+
+        </div>
+
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+        <!-- js for ace editor. -->
+        <script type="text/javascript" src="../lib/ace/ace.js"></script>
+        <!-- js for ace editor. -->
+        <script type="text/javascript" src="../lib/ace/ext-language_tools.js"></script>
+        <!-- js for ace editor. -->
+        <script type="text/javascript" src="js/ext-static_highlight.js"></script>
+
+        <!-- froala editor main js -->
+        <script type="text/javascript" src="../lib/froala-editor/js/froala_editor.min.js"></script>
+
+        <!-- js for insert code plugin.it depend on ace editor -->
+        <script type="text/javascript" src="js/code.js"></script>
+
+        <!--suppress JSNonASCIINames, NonAsciiCharacters -->
+        <script>
+            $(function () {
+                $('#edit').froalaEditor({
+                    htmlAllowedEmptyTags:[".ace_gutter-cell","textarea","a","iframe","object","video","style","script",".fa",".fr-emoticon",".fr-inner","path","line"],
+                    htmlAllowedAttrs:["ace-mode","ace-theme","ace-gutter","accept","accept-charset","accesskey","action","align","allowfullscreen","allowtransparency","alt","async","autocomplete","autofocus","autoplay","autosave","background","bgcolor","border","charset","cellpadding","cellspacing","checked","cite","class","color","cols","colspan","content","contenteditable","contextmenu","controls","coords","data","data-.*","datetime","default","defer","dir","dirname","disabled","download","draggable","dropzone","enctype","for","form","formaction","frameborder","headers","height","hidden","high","href","hreflang","http-equiv","icon","id","ismap","itemprop","keytype","kind","label","lang","language","list","loop","low","max","maxlength","media","method","min","mozallowfullscreen","multiple","muted","name","novalidate","open","optimum","pattern","ping","placeholder","playsinline","poster","preload","pubdate","radiogroup","readonly","rel","required","reversed","rows","rowspan","sandbox","scope","scoped","scrolling","seamless","selected","shape","size","sizes","span","src","srcdoc","srclang","srcset","start","step","summary","spellcheck","style","tabindex","target","title","type","translate","usemap","value","valign","webkitallowfullscreen","width","wrap"],
+                    toolbarButtons: ['insertCode']
+                });
+
+                // show code insert pop window
+                // $('#edit').froalaEditor('insertCode.show');
+                // setTimeout(function () {
+                //     // use plan text instead of highlight code.
+                //     $('#edit').froalaEditor('insertCode.planCode');
+                //     // hide code insert pop window
+                //     $('#edit').froalaEditor('insertCode.hide');
+                // },5000);
+            });
+        </script>
+    </body>
+</html>

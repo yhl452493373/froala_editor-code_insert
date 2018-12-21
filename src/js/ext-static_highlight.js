@@ -74,7 +74,7 @@ Element.prototype.toString = function() {
     if (this.type != "fragment") {
         stringBuilder.push("</", this.type, ">");
     }
-    
+
     return stringBuilder.join("");
 };
 
@@ -103,17 +103,24 @@ var highlight = function(el, opts, callback) {
     if (!mode)
         return false;
     var theme = opts.theme || "ace/theme/textmate";
-    
+
     var data = "";
     var nodes = [];
-
     if (el.firstElementChild) {
         var textLen = 0;
         for (var i = 0; i < el.childNodes.length; i++) {
             var ch = el.childNodes[i];
             if (ch.nodeType == 3) {
                 textLen += ch.data.length;
-                data += ch.data;
+                if (i < el.childNodes.length - 1) {
+                    if (/\n+$/.test(ch.data)) {
+                        data += ch.data.replace(/\n+$/, '\n');
+                    } else {
+                        data += ch.data + '\n';
+                    }
+                } else {
+                    data += ch.data.replace(/\n+$/,'');
+                }
             } else {
                 nodes.push(textLen, ch);
             }
@@ -123,10 +130,12 @@ var highlight = function(el, opts, callback) {
         if (opts.trim)
             data = data.trim();
     }
-    
+
     highlight.render(data, mode, theme, opts.firstLineNumber, !opts.showGutter, function (highlighted) {
         dom.importCssString(highlighted.css, "ace_highlight");
-        el.innerHTML = highlighted.html;
+        //must delete char \n . otherwise can not input chinese in froala editor after highligth code
+        el.classList.add(highlighted.themeClassName);
+        el.innerHTML = highlighted.html.replace(/\n/g,'');
         var container = el.firstChild.firstChild;
         for (var i = 0; i < nodes.length; i += 2) {
             var pos = highlighted.session.doc.indexToPosition(nodes[i]);
@@ -136,6 +145,12 @@ var highlight = function(el, opts, callback) {
         }
         callback && callback();
     });
+};
+highlight.loadTheme = function (theme, onLoad) {
+    config.loadModule(['theme', theme], function (themeModule) {
+        onLoad && onLoad(themeModule);
+    });
+    dom.importCssString(baseStyles, "ace_highlight");
 };
 highlight.render = function(input, mode, theme, lineStart, disableGutter, callback) {
     var waiting = 1;
@@ -186,10 +201,10 @@ highlight.renderSync = function(input, mode, theme, lineStart, disableGutter) {
 
     session.setValue(input);
     var length =  session.getLength();
-    
+
     var outerEl = simpleDom.createElement("div");
     outerEl.className = theme.cssClass;
-    
+
     var innerEl = simpleDom.createElement("div");
     innerEl.className = "ace_static_highlight" + (disableGutter ? "" : " ace_show_gutter");
     innerEl.style["counter-reset"] = "ace_line " + (lineStart - 1);
@@ -197,7 +212,7 @@ highlight.renderSync = function(input, mode, theme, lineStart, disableGutter) {
     for (var ix = 0; ix < length; ix++) {
         var lineEl = simpleDom.createElement("div");
         lineEl.className = "ace_line";
-        
+
         if (!disableGutter) {
             var gutterEl = simpleDom.createElement("span");
             gutterEl.className ="ace_gutter ace_gutter-cell";
@@ -213,6 +228,7 @@ highlight.renderSync = function(input, mode, theme, lineStart, disableGutter) {
     return {
         css: baseStyles + theme.cssText,
         html: outerEl.toString(),
+        themeClassName: theme.cssClass,
         session: session
     };
 };
