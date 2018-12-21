@@ -68,5 +68,5 @@ if (cjk) {
     valueFragment.appendChild(span);
 }
 ```
-after that, please flow src/codeInsert.html and src /showInsertCode.html
+after that, please flow [src/codeInsert.html](src/codeInsert.html) and src/showInsertCode.html
 DO NOT USE IT IF YOU USE textarea FOR Froala Editor.IT ONLY FOR div TAG.
