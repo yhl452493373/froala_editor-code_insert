@@ -3,7 +3,7 @@
 ## 此插件适用于Froala Editor,且Froala Editor使用的div标签作为容器
 #### 如果是textare标签作为容器,请勿使用,有严重问题:丢失html标签和内容
 ---
-示例代码在src下,codeInsert.html为编辑器使用示例,showInsertCode.html为在其他页面高亮代码使用示例
+示例代码在src下,[src/codeInsert.html](src/codeInsert.html)为编辑器使用示例,[src/showInsertCode.html](src/showInsertCode.html)为在其他页面高亮代码使用示例
 主要文件:
 * src/css/code.css
 * src/js/code.js
@@ -68,5 +68,5 @@ if (cjk) {
     valueFragment.appendChild(span);
 }
 ```
-after that, please flow [src/codeInsert.html](src/codeInsert.html) and src/showInsertCode.html
+after that, please flow [src/codeInsert.html](src/codeInsert.html) and [src/showInsertCode.html](src/showInsertCode.html)
 DO NOT USE IT IF YOU USE textarea FOR Froala Editor.IT ONLY FOR div TAG.
