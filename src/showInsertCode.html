@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+         
+        <title>Title</title>
+        <script src="../lib/ace/ace.js"></script>
+        <script src="../lib/ace/ext-language_tools.js"></script>
+        <script src="../lib/ace/ext-static_highlight.js"></script>
+        <link href="css/code.css" rel="stylesheet"/>
+        <link href="../lib/froala-editor/css/froala_editor.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div ace-mode="html" class="ace_code_highlight_container" contenteditable="false"><pre ace-gutter="true" ace-mode="ace/mode/html" ace-theme="ace/theme/tomorrow" class="ace_code_highlight" id="ace_code_highlight_1284987609">&lt;div id=&quot;&quot;&gt;
+    &lt;datatemplate&gt;
+        this is some html code
+    &lt;/datatemplate&gt;
+&lt;/div&gt;
+&lt;script&gt;
+    alert(&quot;this is some javascript code&quot;)
+&lt;/script&gt;</pre>
+        </div>
+    </body>
+    <script>
+        var highlight = ace.require("ace/ext/static_highlight");
+        document.querySelectorAll('.ace_code_highlight_container .ace_code_highlight').forEach(function (element, index) {
+            highlight(element, {
+                mode: element.getAttribute("ace-mode"),
+                theme: element.getAttribute("ace-theme"),
+                startLineNumber: 1,
+                showGutter: element.getAttribute("ace-gutter"),
+                trim: false
+            }, function (highlighted) {
+
+            });
+        });
+    </script>
+</html>
