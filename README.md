@@ -5,9 +5,9 @@
 ---
 示例代码在src下,[src/codeInsert.html](src/codeInsert.html)为编辑器使用示例,[src/showInsertCode.html](src/showInsertCode.html)为在其他页面高亮代码使用示例
 主要文件:
-* src/css/code.css
-* src/js/code.js
-* src/js/ext-static_highlight.js
+* [src/css/code.css](src/css/code.css)
+* [src/js/code.js](src/js/code.js)
+* [src/js/ext-static_highlight.js](src/js/ext-static_highlight.js)
 不要使用ace editor下面的ext-static_highlight.js,除非你把src/js/ext-static_highlight.js拷贝过去替换了它.否则请用src/js/ext-static_highlight.js这个文件
 ---
 使用之前的准备:
@@ -40,9 +40,9 @@ if (cjk) {
 请将src/js下的ext-static_highlight.js放到ace editor目录下替换对应文件再引用该文件.示例中直接引用的src/js下的文件,你也可以这样引用
 ---
 main files:
-* src/css/code.css
-* src/js/code.js
-* src/js/ext-static_highlight.js
+* [src/css/code.css](src/css/code.css)
+* [src/js/code.js](src/js/code.js)
+* [src/js/ext-static_highlight.js](src/js/ext-static_highlight.js)
 do not reference ace editor's ext-static_highlight.js file.use src/js/ext-static_highlight.js instead.
 ---
 if you need to input CJK char(like chinese,japanese...),please modify ace.js.
