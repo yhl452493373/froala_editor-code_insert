@@ -10,6 +10,7 @@
         <link href="../lib/froala-editor/css/froala_style.css" rel="stylesheet"/>
     </head>
     <body>
+        <p>code 1</p>
         <div ace-mode="html" class="ace_code_highlight_container" contenteditable="false"><pre ace-gutter="true" ace-mode="ace/mode/html" ace-theme="ace/theme/tomorrow" class="ace_code_highlight" id="ace_code_highlight_1284987609">&lt;div id=&quot;&quot;&gt;
     &lt;datatemplate&gt;
         this is some html code
@@ -19,9 +20,23 @@
     alert(&quot;this is some javascript code&quot;)
 &lt;/script&gt;</pre>
         </div>
+
+
+        <p>code 2</p>
+        <div ace-mode="html" class="ace_code_highlight_container" contenteditable="false"><pre ace-gutter="true" ace-mode="ace/mode/html" ace-theme="ace/theme/tomorrow" class="ace_code_highlight" id="ace_code_highlight_1284987609">&lt;div id=&quot;&quot;&gt;
+    &lt;datatemplate&gt;
+        code 2
+    &lt;/datatemplate&gt;
+&lt;/div&gt;
+&lt;script&gt;
+    alert(&quot;code 2&quot;)
+&lt;/script&gt;</pre>
+        </div>
     </body>
     <script>
+        //pay attention to dom structure and dom properties.
         var highlight = ace.require("ace/ext/static_highlight");
+        //search highlight code block to loop.they are in .ace_code_highlight_container container.
         document.querySelectorAll('.ace_code_highlight_container .ace_code_highlight').forEach(function (element, index) {
             highlight(element, {
                 mode: element.getAttribute("ace-mode"),
@@ -30,7 +45,8 @@
                 showGutter: element.getAttribute("ace-gutter"),
                 trim: false
             }, function (highlighted) {
-
+                //code block container must restore class properties
+                element.class = 'ace_code_highlight_container';
             });
         });
     </script>
